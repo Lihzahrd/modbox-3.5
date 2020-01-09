@@ -36,39 +36,50 @@ var beepbox;
         { name: "dbl harmonic :(", flags: [true, false, true, true, false, false, true, true, true, false, false, true] },
         { name: "enigma", flags: [true, false, true, false, true, false, true, false, true, false, true, false] },
         { name: "expert", flags: [true, true, true, true, true, true, true, true, true, true, true, true] },
+	{ name: "monotonic", flags: [true, false, false, false, false, false, false, false, false, false, false, false] },
+	{ name: "no dabbing", flags: [true, true, false, true, true, true, true, true, true, false, true, false] },
     ]);
     Config.keys = toNameMap([
         { name: "C", isWhiteKey: true, basePitch: 12 },
-        { name: "Câ™¯", isWhiteKey: false, basePitch: 13 },
+        { name: "C#", isWhiteKey: false, basePitch: 13 },
         { name: "D", isWhiteKey: true, basePitch: 14 },
-        { name: "Dâ™¯", isWhiteKey: false, basePitch: 15 },
+        { name: "D#", isWhiteKey: false, basePitch: 15 },
         { name: "E", isWhiteKey: true, basePitch: 16 },
         { name: "F", isWhiteKey: true, basePitch: 17 },
-        { name: "Fâ™¯", isWhiteKey: false, basePitch: 18 },
+        { name: "F#", isWhiteKey: false, basePitch: 18 },
         { name: "G", isWhiteKey: true, basePitch: 19 },
-        { name: "Gâ™¯", isWhiteKey: false, basePitch: 20 },
+        { name: "G#", isWhiteKey: false, basePitch: 20 },
         { name: "A", isWhiteKey: true, basePitch: 21 },
-        { name: "Aâ™¯", isWhiteKey: false, basePitch: 22 },
+        { name: "A#", isWhiteKey: false, basePitch: 22 },
         { name: "B", isWhiteKey: true, basePitch: 23 },
     ]);
     Config.blackKeyNameParents = [-1, 1, -1, 1, -1, 1, -1, -1, 1, -1, 1, -1];
     Config.tempoMin = 30;
     Config.tempoMax = 300;
-    Config.reverbRange = 4;
+    Config.reverbRange = 200;
+    Config.detuneRange = 10;
     Config.beatsPerBarMin = 3;
     Config.beatsPerBarMax = 16;
     Config.barCountMin = 1;
     Config.barCountMax = 128;
+    Config.patternsPerChannelMin = 1;
+    Config.patternsPerChannelMax = 64;
     Config.instrumentsPerChannelMin = 1;
     Config.instrumentsPerChannelMax = 10;
     Config.partsPerBeat = 24;
     Config.ticksPerPart = 2;
     Config.rhythms = toNameMap([
-        { name: "Ã·3 (triplets)", stepsPerBeat: 3, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: [5, 12, 18] },
-        { name: "Ã·4 (standard)", stepsPerBeat: 4, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: [3, 9, 17, 21] },
-        { name: "Ã·6", stepsPerBeat: 6, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
-        { name: "Ã·8", stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
-        { name: "freehand", stepsPerBeat: 24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+        { name: "÷3 (triplets)", stepsPerBeat: 3, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: [5, 12, 18] },
+        { name: "÷4 (standard)", stepsPerBeat: 4, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: [3, 9, 17, 21] },
+        { name: "÷6", stepsPerBeat: 6, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+        { name: "÷8", stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+	{ name: "÷16 (arpfest)", stepsPerBeat: 16, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+	{ name: "÷12", stepsPerBeat: 12, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+	{ name: "÷9", stepsPerBeat: 9, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+	{ name: "÷5", stepsPerBeat: 5, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+	{ name: "÷50", stepsPerBeat: 50, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+	{ name: "÷24", stepsPerBeat: 24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
+        { name: "freehand", stepsPerBeat: 999, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1], [0, 1, 2, 3]], roundUpThresholds: null },
     ]);
     Config.instrumentTypeNames = ["chip", "FM", "noise", "spectrum", "drumset", "harmonics", "PWM"];
     Config.instrumentTypeHasSpecialInterval = [true, true, false, false, false, true, false];
@@ -83,6 +94,7 @@ var beepbox;
         { name: "double saw", volume: 0.5, samples: centerWave([0.0, -0.2, -0.4, -0.6, -0.8, -1.0, 1.0, -0.8, -0.6, -0.4, -0.2, 1.0, 0.8, 0.6, 0.4, 0.2]) },
         { name: "double pulse", volume: 0.4, samples: centerWave([1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0]) },
         { name: "spiky", volume: 0.4, samples: centerWave([1.0, -1.0, 1.0, -1.0, 1.0, 0.0]) },
+	{ name: "atari bass", volume: 0.4, samples: centerWave([-1.0, -1.0, 1.0, -1.0, 1.0, 0.2, 0.5, 0.2]) },
     ]);
     Config.chipNoises = toNameMap([
         { name: "retro", volume: 0.25, basePitch: 69, pitchFilterMult: 1024.0, isSoft: false, samples: null },
@@ -137,38 +149,38 @@ var beepbox;
     ]);
     Config.operatorCount = 4;
     Config.algorithms = toNameMap([
-        { name: "1â†(2â€‚3â€‚4)", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2, 3, 4], [], [], []] },
-        { name: "1â†(2â€‚3â†4)", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2, 3], [], [4], []] },
-        { name: "1â†2â†(3â€‚4)", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2], [3, 4], [], []] },
-        { name: "1â†(2â€‚3)â†4", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2, 3], [4], [4], []] },
-        { name: "1â†2â†3â†4", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2], [3], [4], []] },
-        { name: "1â†3â€ƒ2â†4", carrierCount: 2, associatedCarrier: [1, 2, 1, 2], modulatedBy: [[3], [4], [], []] },
-        { name: "1â€ƒ2â†(3â€‚4)", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[], [3, 4], [], []] },
-        { name: "1â€ƒ2â†3â†4", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[], [3], [4], []] },
-        { name: "(1â€‚2)â†3â†4", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[3], [3], [4], []] },
-        { name: "(1â€‚2)â†(3â€‚4)", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[3, 4], [3, 4], [], []] },
-        { name: "1â€ƒ2â€ƒ3â†4", carrierCount: 3, associatedCarrier: [1, 2, 3, 3], modulatedBy: [[], [], [4], []] },
-        { name: "(1â€‚2â€‚3)â†4", carrierCount: 3, associatedCarrier: [1, 2, 3, 3], modulatedBy: [[4], [4], [4], []] },
-        { name: "1â€ƒ2â€ƒ3â€ƒ4", carrierCount: 4, associatedCarrier: [1, 2, 3, 4], modulatedBy: [[], [], [], []] },
+        { name: "1←(2 3 4)", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2, 3, 4], [], [], []] },
+        { name: "1←(2 3←4)", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2, 3], [], [4], []] },
+        { name: "1←2←(3 4)", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2], [3, 4], [], []] },
+        { name: "1←(2 3)←4", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2, 3], [4], [4], []] },
+        { name: "1←2←3←4", carrierCount: 1, associatedCarrier: [1, 1, 1, 1], modulatedBy: [[2], [3], [4], []] },
+        { name: "1←3 2←4", carrierCount: 2, associatedCarrier: [1, 2, 1, 2], modulatedBy: [[3], [4], [], []] },
+        { name: "1 2←(3 4)", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[], [3, 4], [], []] },
+        { name: "1 2←3←4", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[], [3], [4], []] },
+        { name: "(1 2)←3←4", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[3], [3], [4], []] },
+        { name: "(1 2)←(3 4)", carrierCount: 2, associatedCarrier: [1, 2, 2, 2], modulatedBy: [[3, 4], [3, 4], [], []] },
+        { name: "1 2 3←4", carrierCount: 3, associatedCarrier: [1, 2, 3, 3], modulatedBy: [[], [], [4], []] },
+        { name: "(1 2 3)←4", carrierCount: 3, associatedCarrier: [1, 2, 3, 3], modulatedBy: [[4], [4], [4], []] },
+        { name: "1 2 3 4", carrierCount: 4, associatedCarrier: [1, 2, 3, 4], modulatedBy: [[], [], [], []] },
     ]);
     Config.operatorCarrierInterval = [0.0, 0.04, -0.073, 0.091];
     Config.operatorAmplitudeMax = 15;
     Config.operatorFrequencies = toNameMap([
-        { name: "1Ã—", mult: 1.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "~1Ã—", mult: 1.0, hzOffset: 1.5, amplitudeSign: -1.0 },
-        { name: "2Ã—", mult: 2.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "~2Ã—", mult: 2.0, hzOffset: -1.3, amplitudeSign: -1.0 },
-        { name: "3Ã—", mult: 3.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "4Ã—", mult: 4.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "5Ã—", mult: 5.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "6Ã—", mult: 6.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "7Ã—", mult: 7.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "8Ã—", mult: 8.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "9Ã—", mult: 9.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "11Ã—", mult: 11.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "13Ã—", mult: 13.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "16Ã—", mult: 16.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "20Ã—", mult: 20.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "1×", mult: 1.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "~1×", mult: 1.0, hzOffset: 1.5, amplitudeSign: -1.0 },
+        { name: "2×", mult: 2.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "~2×", mult: 2.0, hzOffset: -1.3, amplitudeSign: -1.0 },
+        { name: "3×", mult: 3.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "4×", mult: 4.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "5×", mult: 5.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "6×", mult: 6.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "7×", mult: 7.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "8×", mult: 8.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "9×", mult: 9.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "11×", mult: 11.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "13×", mult: 13.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "16×", mult: 16.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        { name: "20×", mult: 20.0, hzOffset: 0.0, amplitudeSign: 1.0 },
     ]);
     Config.envelopes = toNameMap([
         { name: "custom", type: 0, speed: 0.0 },
@@ -194,24 +206,24 @@ var beepbox;
         { name: "decay 3", type: 8, speed: 4.0 },
     ]);
     Config.feedbacks = toNameMap([
-        { name: "1âŸ²", indices: [[1], [], [], []] },
-        { name: "2âŸ²", indices: [[], [2], [], []] },
-        { name: "3âŸ²", indices: [[], [], [3], []] },
-        { name: "4âŸ²", indices: [[], [], [], [4]] },
-        { name: "1âŸ²â€ƒ2âŸ²", indices: [[1], [2], [], []] },
-        { name: "3âŸ²â€ƒ4âŸ²", indices: [[], [], [3], [4]] },
-        { name: "1âŸ²â€ƒ2âŸ²â€ƒ3âŸ²", indices: [[1], [2], [3], []] },
-        { name: "2âŸ²â€ƒ3âŸ²â€ƒ4âŸ²", indices: [[], [2], [3], [4]] },
-        { name: "1âŸ² 2âŸ² 3âŸ² 4âŸ²", indices: [[1], [2], [3], [4]] },
-        { name: "1â†’2", indices: [[], [1], [], []] },
-        { name: "1â†’3", indices: [[], [], [1], []] },
-        { name: "1â†’4", indices: [[], [], [], [1]] },
-        { name: "2â†’3", indices: [[], [], [2], []] },
-        { name: "2â†’4", indices: [[], [], [], [2]] },
-        { name: "3â†’4", indices: [[], [], [], [3]] },
-        { name: "1â†’3â€ƒ2â†’4", indices: [[], [], [1], [2]] },
-        { name: "1â†’4â€ƒ2â†’3", indices: [[], [], [2], [1]] },
-        { name: "1â†’2â†’3â†’4", indices: [[], [1], [2], [3]] },
+        { name: "1⟲", indices: [[1], [], [], []] },
+        { name: "2⟲", indices: [[], [2], [], []] },
+        { name: "3⟲", indices: [[], [], [3], []] },
+        { name: "4⟲", indices: [[], [], [], [4]] },
+        { name: "1⟲ 2⟲", indices: [[1], [2], [], []] },
+        { name: "3⟲ 4⟲", indices: [[], [], [3], [4]] },
+        { name: "1⟲ 2⟲ 3⟲", indices: [[1], [2], [3], []] },
+        { name: "2⟲ 3⟲ 4⟲", indices: [[], [2], [3], [4]] },
+        { name: "1⟲ 2⟲ 3⟲ 4⟲", indices: [[1], [2], [3], [4]] },
+        { name: "1→2", indices: [[], [1], [], []] },
+        { name: "1→3", indices: [[], [], [1], []] },
+        { name: "1→4", indices: [[], [], [], [1]] },
+        { name: "2→3", indices: [[], [], [2], []] },
+        { name: "2→4", indices: [[], [], [], [2]] },
+        { name: "3→4", indices: [[], [], [], [3]] },
+        { name: "1→3 2→4", indices: [[], [], [1], [2]] },
+        { name: "1→4 2→3", indices: [[], [], [2], [1]] },
+        { name: "1→2→3→4", indices: [[], [1], [2], [3]] },
     ]);
     Config.chipNoiseLength = 1 << 15;
     Config.spectrumBasePitch = 24;
@@ -226,9 +238,9 @@ var beepbox;
     Config.harmonicsWavelength = 1 << 11;
     Config.pulseWidthRange = 8;
     Config.pitchChannelCountMin = 1;
-    Config.pitchChannelCountMax = 6;
+    Config.pitchChannelCountMax = 12;
     Config.noiseChannelCountMin = 0;
-    Config.noiseChannelCountMax = 3;
+    Config.noiseChannelCountMax = 4;
     Config.noiseInterval = 6;
     Config.drumCount = 12;
     Config.pitchOctaves = 7;
@@ -364,17 +376,24 @@ var beepbox;
         }
     }
     ColorConfig.pitchColors = beepbox.toNameMap([
-        { name: "cyan", channelDim: "#0099a1", channelBright: "#25f3ff", noteDim: "#00bdc7", noteBright: "#92f9ff" },
-        { name: "yellow", channelDim: "#a1a100", channelBright: "#ffff25", noteDim: "#c7c700", noteBright: "#ffff92" },
-        { name: "orange", channelDim: "#c75000", channelBright: "#ff9752", noteDim: "#ff771c", noteBright: "#ffcdab" },
-        { name: "green", channelDim: "#00a100", channelBright: "#50ff50", noteDim: "#00c700", noteBright: "#a0ffa0" },
-        { name: "purple", channelDim: "#d020d0", channelBright: "#ff90ff", noteDim: "#e040e0", noteBright: "#ffc0ff" },
-        { name: "blue", channelDim: "#7777b0", channelBright: "#a0a0ff", noteDim: "#8888d0", noteBright: "#d0d0ff" },
+        { name: "", channelDim: "#0099a1", channelBright: "#25f3ff", noteDim: "#0099a1", noteBright: "#25f3ff" },
+        { name: "", channelDim: "#439143", channelBright: "#44ff44", noteDim: "#439143", noteBright: "#44ff44" },
+        { name: "", channelDim: "#a1a100", channelBright: "#ffff25", noteDim: "#a1a100", noteBright: "#ffff25" },
+        { name: "", channelDim: "#c75000", channelBright: "#ff9752", noteDim: "#c75000", noteBright: "#ff9752" },
+        { name: "", channelDim: "#d020d0", channelBright: "#ff90ff", noteDim: "#d020d0", noteBright: "#ff90ff" },
+        { name: "", channelDim: "#552377", channelBright: "#9f31ea", noteDim: "#552377", noteBright: "#9f31ea" },
+	{ name: "", channelDim: "#221b89", channelBright: "#2b6aff", noteDim: "#221b89", noteBright: "#2b6aff" },
+	{ name: "", channelDim: "#00995f", channelBright: "#00ff9f", noteDim: "#00995f", noteBright: "#00ff9f" },
+	{ name: "", channelDim: "#d6b03e", channelBright: "#ffbf00", noteDim: "#d6b03e", noteBright: "#ffbf00" },
+	{ name: "", channelDim: "#b25915", channelBright: "#d85d00", noteDim: "#b25915", noteBright: "#d85d00" },
+	{ name: "", channelDim: "#891a60", channelBright: "#ff00a1", noteDim: "#891a60", noteBright: "#ff00a1" },
+	{ name: "", channelDim: "#965cbc", channelBright: "#c26afc", noteDim: "#965cbc", noteBright: "#c26afc" },
     ]);
     ColorConfig.noiseColors = beepbox.toNameMap([
-        { name: "gray", channelDim: "#6f6f6f", channelBright: "#aaaaaa", noteDim: "#a7a7a7", noteBright: "#e0e0e0" },
-        { name: "brown", channelDim: "#996633", channelBright: "#ddaa77", noteDim: "#cc9966", noteBright: "#f0d0bb" },
-        { name: "azure", channelDim: "#4a6d8f", channelBright: "#77aadd", noteDim: "#6f9fcf", noteBright: "#bbd7ff" },
+        { name: "", channelDim: "#991010", channelBright: "#ff1616", noteDim: "#991010", noteBright: "#ff1616" },
+        { name: "", channelDim: "#aaaaaa", channelBright: "#ffffff", noteDim: "#aaaaaa", noteBright: "#ffffff" },
+        { name: "", channelDim: "#5869BD", channelBright: "#768dfc", noteDim: "#5869BD", noteBright: "#768dfc" },
+	{ name: "", channelDim: "#7c9b42", channelBright: "#a5ff00", noteDim: "#7c9b42", noteBright: "#a5ff00" },
     ]);
     beepbox.ColorConfig = ColorConfig;
 })(beepbox || (beepbox = {}));
@@ -13042,6 +13061,8 @@ var beepbox;
             this._customizeInstrumentButton = button({ type: "button", style: "margin: 2px 0" }, "Customize Instrument", beepbox.SVG.svg({ style: "flex-shrink: 0; position: absolute; left: 0; top: 50%; margin-top: -1em; pointer-events: none;", width: "2em", height: "2em", viewBox: "-13 -13 26 26" }, beepbox.SVG.g({ transform: "translate(0,1)" }, beepbox.SVG.circle({ cx: "0", cy: "0", r: "6.5", stroke: "currentColor", "stroke-width": "1", fill: "none" }), beepbox.SVG.rect({ x: "-1", y: "-5", width: "2", height: "4", fill: "currentColor", transform: "rotate(30)" }), beepbox.SVG.circle({ cx: "-7.79", cy: "4.5", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "-9", cy: "0", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "-7.79", cy: "-4.5", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "-4.5", cy: "-7.79", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "0", cy: "-9", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "4.5", cy: "-7.79", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "7.79", cy: "-4.5", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "9", cy: "0", r: "0.75", fill: "currentColor" }), beepbox.SVG.circle({ cx: "7.79", cy: "4.5", r: "0.75", fill: "currentColor" }))));
             this._customInstrumentSettingsGroup = div({ className: "editor-controls" }, this._filterCutoffRow, this._filterResonanceRow, this._filterEnvelopeRow, this._transitionRow, div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("effects") }, "Effects:"), div({ className: "selectContainer" }, this._effectsSelect)), this._chordSelectRow, this._vibratoSelectRow, this._intervalSelectRow, this._chipWaveSelectRow, this._chipNoiseSelectRow, this._algorithmSelectRow, this._phaseModGroup, this._feedbackRow1, this._feedbackRow2, this._spectrumRow, this._harmonicsRow, this._drumsetGroup, this._pulseEnvelopeRow, this._pulseWidthRow);
             this._instrumentSettingsGroup = div({ className: "editor-controls" }, this._instrumentSelectRow, this._instrumentVolumeSliderRow, this._panSliderRow, div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("instrumentType") }, "Type: "), div({ className: "selectContainer" }, this._pitchedPresetSelect, this._drumPresetSelect)), this._customizeInstrumentButton, this._customInstrumentSettingsGroup);
+	    this._advancedInstrumentSettingsLabel = div({ style: "margin: 3px 0; text-align: center;" }, "Advanced Instrument Settings"),
+	    this._advancedSongSettingsLabel = div({ style: "margin: 2px; text-align: center;" }, "Advanced Song Settings"),
             this._promptContainer = div({ className: "promptContainer", style: "display: none;" });
             this.mainLayer = div({ className: "beepboxEditor", tabIndex: "0" }, this._editorBox, div({ className: "editor-widget-column noSelection" }, div({ style: "text-align: center; color: #999;" }, beepbox.EditorConfig.versionDisplayName), div({ className: "editor-widgets" }, div({ className: "editor-controls" }, div({ className: "playback-controls" }, div({ className: "playback-bar-controls" }, this._playButton, this._prevBarButton, this._nextBarButton), div({ className: "playback-volume-controls" }, beepbox.SVG.svg({ style: "flex-shrink: 0;", width: "2em", height: "2em", viewBox: "0 0 26 26" }, beepbox.SVG.path({ d: "M 4 16 L 4 10 L 8 10 L 13 5 L 13 21 L 8 16 z M 15 11 L 16 10 A 7.2 7.2 0 0 1 16 16 L 15 15 A 5.8 5.8 0 0 0 15 12 z M 18 8 L 19 7 A 11.5 11.5 0 0 1 19 19 L 18 18 A 10.1 10.1 0 0 0 18 8 z", fill: "#777" })), this._volumeSlider))), div({ className: "editor-settings" }, div({ className: "editor-song-settings" }, div({ className: "editor-menus" }, div({ className: "selectContainer menu" }, this._fileMenu, beepbox.SVG.svg({ style: "flex-shrink: 0; position: absolute; left: 0; top: 50%; margin-top: -1em; pointer-events: none;", width: "2em", height: "2em", viewBox: "-5 -21 26 26" }, beepbox.SVG.path({ d: "M 2 0 L 2 -16 L 10 -16 L 14 -12 L 14 0 z M 3 -1 L 13 -1 L 13 -11 L 9 -11 L 9 -15 L 3 -15 z", fill: "currentColor" }))), div({ className: "selectContainer menu" }, this._editMenu, beepbox.SVG.svg({ style: "flex-shrink: 0; position: absolute; left: 0; top: 50%; margin-top: -1em; pointer-events: none;", width: "2em", height: "2em", viewBox: "-5 -21 26 26" }, beepbox.SVG.path({ d: "M 0 0 L 1 -4 L 4 -1 z M 2 -5 L 10 -13 L 13 -10 L 5 -2 zM 11 -14 L 13 -16 L 14 -16 L 16 -14 L 16 -13 L 14 -11 z", fill: "currentColor" }))), div({ className: "selectContainer menu" }, this._optionsMenu, beepbox.SVG.svg({ style: "flex-shrink: 0; position: absolute; left: 0; top: 50%; margin-top: -1em; pointer-events: none;", width: "2em", height: "2em", viewBox: "-13 -13 26 26" }, beepbox.SVG.path({ d: "M 5.78 -1.6 L 7.93 -0.94 L 7.93 0.94 L 5.78 1.6 L 4.85 3.53 L 5.68 5.61 L 4.21 6.78 L 2.36 5.52 L 0.27 5.99 L -0.85 7.94 L -2.68 7.52 L -2.84 5.28 L -4.52 3.95 L -6.73 4.28 L -7.55 2.59 L -5.9 1.07 L -5.9 -1.07 L -7.55 -2.59 L -6.73 -4.28 L -4.52 -3.95 L -2.84 -5.28 L -2.68 -7.52 L -0.85 -7.94 L 0.27 -5.99 L 2.36 -5.52 L 4.21 -6.78 L 5.68 -5.61 L 4.85 -3.53 M 2.92 0.67 L 2.92 -0.67 L 2.35 -1.87 L 1.3 -2.7 L 0 -3 L -1.3 -2.7 L -2.35 -1.87 L -2.92 -0.67 L -2.92 0.67 L -2.35 1.87 L -1.3 2.7 L -0 3 L 1.3 2.7 L 2.35 1.87 z", fill: "currentColor" })))), div({ style: "margin: 3px 0; text-align: center; color: #999;" }, "Song Settings"), div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("scale") }, "Scale: "), div({ className: "selectContainer" }, this._scaleSelect)), div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("key") }, "Key: "), div({ className: "selectContainer" }, this._keySelect)), div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("tempo") }, "Tempo: "), span({ style: "display: flex;" }, this._tempoSlider.input, this._tempoStepper)), div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("reverb") }, "Reverb: "), this._reverbSlider.input), div({ className: "selectRow" }, span({ class: "tip", onclick: () => this._openPrompt("rhythm") }, "Rhythm: "), div({ className: "selectContainer" }, this._rhythmSelect))), div({ className: "editor-instrument-settings" }, div({ style: "margin: 3px 0; text-align: center; color: #999;" }, "Instrument Settings"), this._instrumentSettingsGroup)))), this._promptContainer);
             this._wasPlaying = false;
